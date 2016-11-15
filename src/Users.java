@@ -8,6 +8,7 @@ public class Users {
     {
         userList = new ArrayList<>();
     }
+
     // Create new user with type, name and password
     // user created with this method should be automatically added to userList;
     public IUser create(int type, String name, String password)
@@ -24,12 +25,12 @@ public class Users {
     // Delete user from repository
     // Throw  RuntimeException if the user is not in the list
     public void remove(IUser user) throws RuntimeException {
-        try{
+        if(exists(user)) {
             userList.remove(user);
         }
-        catch (Exception e)
+        else
         {
-            System.out.println("user is not in list");
+            throw new RuntimeException("user is not in the list");
         }
     }
 

@@ -4,12 +4,6 @@ public class User implements IUser {
     protected String password;
     protected int type;
 
-
-    public  String passwordform = "^[a-zA-Z][a-zA-Z0-9]{12,}";
-
-
-
-
     public User(int type, String name, String password) {
         this.type = type;
         setName(name);
@@ -18,7 +12,6 @@ public class User implements IUser {
 
     @Override
     public String getName() {
-
         return name;
     }
 
@@ -26,7 +19,7 @@ public class User implements IUser {
     public String setName(String name) {
         if(name.equals(""))
         {
-            System.out.print("Wrong username");
+            System.out.println("Wrong username");
             return null;
         }
         else if (name.matches("^[a-zA-Z][a-zA-Z0-9]{7,}$")) {
@@ -35,6 +28,7 @@ public class User implements IUser {
         }
         else
         {
+            System.out.println("Wrong username");
             return this.name;
         }
     }
@@ -43,14 +37,15 @@ public class User implements IUser {
     public String setPassword(String password) {
         if(password.equals(""))
         {
-            System.out.print("Wrong password");
+            System.out.println("Wrong password");
             return this.password;
         }
-        else if(password.matches("^(?=.*[a-zA-Z])(?=.*[a-zA-Z0-9]){12,}$")){
+        else if(password.matches("^(?=.*[0-9])[a-z0-9]{8,}$")){
             this.password = password;
             return this.password;
-        } else {
-            System.out.print("Wrong password");
+        }
+        else {
+            System.out.println("Wrong password");
             return this.password;
         }
     }
@@ -59,14 +54,14 @@ public class User implements IUser {
     public boolean isPasswordCorrect(String password) {
         if (this.password.equals(password)) {
             return true;
-        } else {
+        }
+        else {
             return false;
         }
     }
 
     @Override
     public int getType() {
-
         return type;
     }
 }
